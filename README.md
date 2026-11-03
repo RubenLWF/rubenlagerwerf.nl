@@ -4,7 +4,7 @@ My personal website built using Astro, you can visit it on [https://rubenlagerwe
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Astro (static output), TypeScript. React only renders `react-icons` at build time; no React is shipped to the browser.
+- **Framework**: Astro (static output), TypeScript
 - **Styling**: Tailwind CSS
 - **Build Tool**: Astro (Vite)
 - **Deployment**: GitHub Pages

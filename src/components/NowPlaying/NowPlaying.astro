@@ -1,6 +1,5 @@
 ---
-import { FiExternalLink } from "react-icons/fi";
-import { SiSpotify } from "react-icons/si";
+import Icon from "../Icon.astro";
 ---
 
 <div data-now-playing>
@@ -16,7 +15,7 @@ import { SiSpotify } from "react-icons/si";
   </div>
 
   <div data-state="idle" hidden class="p-4 rounded-4xl flex items-center gap-4 shadow-lg w-full max-w-xl bg-black">
-    <SiSpotify className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 text-[#1ED760]" role="img" aria-label="Spotify" />
+    <Icon name="spotify" class="w-16 h-16 sm:w-24 sm:h-24 shrink-0 text-[#1ED760]" role="img" aria-label="Spotify" />
     <div class="flex-1 min-w-0 text-white">
       <p class="text-lg font-bold truncate">Not Playing</p>
       <p class="text-sm font-semibold truncate">No music currently playing</p>
@@ -36,7 +35,7 @@ import { SiSpotify } from "react-icons/si";
         class="flex float-right items-center gap-1 mt-1 text-sm hover:opacity-80 transition-opacity"
       >
         Listen on Spotify
-        <FiExternalLink size={16} aria-hidden="true" />
+        <Icon name="external-link" width="16" height="16" aria-hidden="true" />
       </a>
     </div>
   </div>

@@ -1,7 +1,6 @@
 ---
 import { Picture } from "astro:assets";
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
+import Icon from "../Icon.astro";
 
 import Ruben from "../../assets/images/Ruben.png";
 
@@ -123,7 +122,7 @@ const rollerCss = `
           </p>
           {/* Location */}
           <div class="flex items-center justify-center w-full">
-            <FaLocationDot className="text-accent w-6 h-6 mr-2" aria-hidden="true" />
+            <Icon name="location-dot" class="text-accent w-6 h-6 mr-2" aria-hidden="true" />
             <p class="text-lg">Based in Eindhoven</p>
           </div>
           {/* Links */}
@@ -136,7 +135,7 @@ const rollerCss = `
                 aria-label="LinkedIn"
                 class="flex-1 flex justify-center"
               >
-                <FaLinkedin className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+                <Icon name="linkedin" class="w-7 h-7 text-secondary hover:text-accent transition-colors" />
               </a>
               <a
                 href="https://github.com/RubenLWF"
@@ -145,14 +144,14 @@ const rollerCss = `
                 aria-label="GitHub"
                 class="flex-1 flex justify-center"
               >
-                <FaGithub className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+                <Icon name="github" class="w-7 h-7 text-secondary hover:text-accent transition-colors" />
               </a>
               <a
                 href="mailto:contact@rubenlagerwerf.nl"
                 aria-label="Email"
                 class="flex-1 flex justify-center"
               >
-                <FaEnvelope className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+                <Icon name="envelope" class="w-7 h-7 text-secondary hover:text-accent transition-colors" />
               </a>
             </div>
           </div>
