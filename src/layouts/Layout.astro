@@ -1,6 +1,7 @@
 ---
 import { getImage } from "astro:assets";
 import background from "../assets/images/background.jpg";
+import ruben from "../assets/images/Ruben.png";
 import "../styles/global.css";
 
 interface Props {
@@ -11,7 +12,16 @@ interface Props {
 const { title, description } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
-// Shown at its native 3000px size and darkened by a multiply blend, so heavy compression is not visible.
+const ogImage = await getImage({
+  src: ruben,
+  width: 1200,
+  height: 630,
+  fit: "cover",
+  position: "attention",
+  format: "jpg",
+});
+const ogImageUrl = new URL(ogImage.src, Astro.site);
+
 const optimizedBackground = await getImage({ src: background, format: "webp", quality: 50 });
 ---
 
@@ -24,6 +34,17 @@ const optimizedBackground = await getImage({ src: background, format: "webp", qu
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Ruben Lagerwerf" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content={String(ogImage.attributes.width)} />
+    <meta property="og:image:height" content={String(ogImage.attributes.height)} />
+    <meta property="og:image:alt" content="Portrait of Ruben Lagerwerf" />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <slot />
