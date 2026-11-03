@@ -45,6 +45,7 @@ const optimizedBackground = await getImage({ src: background, format: "webp", qu
     <meta property="og:image:height" content={String(ogImage.attributes.height)} />
     <meta property="og:image:alt" content="Portrait of Ruben Lagerwerf" />
     <meta name="twitter:card" content="summary_large_image" />
+    <slot name="head" />
   </head>
   <body>
     <slot />

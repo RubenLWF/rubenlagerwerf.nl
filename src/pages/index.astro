@@ -1,12 +1,50 @@
 ---
+import { getImage } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import InfoBox from "../components/InfoBox/InfoBox.astro";
+import ruben from "../assets/images/Ruben.png";
+
+const portrait = await getImage({
+  src: ruben,
+  width: 512,
+  height: 512,
+  fit: "cover",
+  position: "attention",
+  format: "jpg",
+});
+
+// https://schema.org/Person
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Ruben Lagerwerf",
+  url: new URL("/", Astro.site).href,
+  image: new URL(portrait.src, Astro.site).href,
+  jobTitle: "Digital Innovation Officer",
+  memberOf: {
+    "@type": "Organization",
+    name: "Study Association GEWIS",
+    url: "https://gewis.nl/en/",
+  },
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "Eindhoven University of Technology",
+    url: "https://www.tue.nl/en/",
+  },
+  homeLocation: {
+    "@type": "Place",
+    name: "Eindhoven, Netherlands",
+  },
+  email: "mailto:contact@rubenlagerwerf.nl",
+  sameAs: ["https://www.linkedin.com/in/ruben-lagerwerf/", "https://github.com/RubenLWF"],
+};
 ---
 
 <Layout
   title="Ruben Lagerwerf"
   description="Ruben Lagerwerf is a Cybersecurity master's student at Eindhoven University of Technology and Digital Innovation Officer at Study Association GEWIS."
 >
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(person)} />
   <main class="flex flex-col items-center justify-center min-h-screen px-4 py-8">
     <InfoBox />
   </main>
