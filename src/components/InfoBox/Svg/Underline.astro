@@ -25,4 +25,12 @@ const path =
       stroke-dashoffset: 0;
     }
   }
+
+  /* Show the finished underline instead of drawing it. */
+  @media (prefers-reduced-motion: reduce) {
+    #underline-path {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+  }
 </style>

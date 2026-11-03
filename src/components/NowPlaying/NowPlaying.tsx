@@ -7,7 +7,7 @@ export default function NowPlaying() {
 
     if (loading) {
         return (
-            <div className="p-4 rounded-4xl shadow-lg w-full max-w-xl bg-gray-200 animate-pulse">
+            <div className="p-4 rounded-4xl shadow-lg w-full max-w-xl bg-gray-200 motion-safe:animate-pulse">
                 <div className="flex items-center gap-4">
                     <div className="w-16 h-16 sm:w-24 sm:h-24 bg-gray-300 rounded-md shadow-lg"></div>
                     <div className="flex-1 min-w-0">

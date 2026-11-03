@@ -24,4 +24,12 @@ const path = "M 638.44,326.09 C 637.81 328.29, 638.13 330.57, 638.08 337.21 C 63
       stroke-dashoffset: 2918.26513671875;
     }
   }
+
+  /* Show the finished signature instead of drawing it. */
+  @media (prefers-reduced-motion: reduce) {
+    #ruben-text-path {
+      animation: none;
+      stroke-dashoffset: 2918.26513671875;
+    }
+  }
 </style>
