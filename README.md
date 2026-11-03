@@ -12,7 +12,7 @@ My personal website built using React, you can visit it on [https://rubenlagerwe
 
 ## 🎵 Spotify Integration
 
-The website features real-time Spotify integration that displays your currently playing track. This is implemented using Vercel's serverless functions as an API proxy and smart token caching to minimize API calls.
+The website features real-time Spotify integration that displays your currently playing track. A Vercel serverless function calls the Spotify API on the server and returns the track details.
 
 ## 🎨 Components
 
