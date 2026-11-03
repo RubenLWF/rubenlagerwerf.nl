@@ -28,8 +28,3 @@ Spotify integration component that:
 - Displays album artwork with dynamic background colors
 - Shows track title, artist, and play status
 - Handles loading and error states gracefully
-
-### TechStack
-Animated grid showcasing technologies I use:
-- Tiles with technology icons
-- Flip animation on hover to reveal technology name
