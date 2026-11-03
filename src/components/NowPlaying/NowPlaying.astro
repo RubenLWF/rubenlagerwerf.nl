@@ -85,6 +85,18 @@ import SpotifyLogo from "../../assets/images/Spotify_Logo.png";
     }
   }
 
-  update();
-  setInterval(update, POLL_INTERVAL_MS);
+  // Only poll while the tab is visible; refresh immediately when it becomes visible again.
+  let timer: ReturnType<typeof setInterval> | undefined;
+  const stopPolling = () => {
+    clearInterval(timer);
+    timer = undefined;
+  };
+  const startPolling = () => {
+    stopPolling();
+    update();
+    timer = setInterval(update, POLL_INTERVAL_MS);
+  };
+
+  document.addEventListener("visibilitychange", () => (document.hidden ? stopPolling() : startPolling()));
+  if (!document.hidden) startPolling();
 </script>
