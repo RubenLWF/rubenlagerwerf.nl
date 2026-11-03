@@ -108,7 +108,7 @@ export default function InfoBox() {
               </div>
               {/* Description */}
               <p>
-                Currently pursuing a Masters's in Information Security Technology at{" "}
+                Currently pursuing a Master's in Cybersecurity at{" "}
                 <a
                   className="text-secondary hover:text-accent transition-colors"
                   href="https://educationguide.tue.nl/programs/graduate-school/special-masters-tracks/special-masters-track-cybersecurity"
