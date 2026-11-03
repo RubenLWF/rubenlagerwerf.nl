@@ -1,0 +1,90 @@
+---
+import { FiExternalLink } from "react-icons/fi";
+import SpotifyLogo from "../../assets/images/Spotify_Logo.png";
+---
+
+<div data-now-playing>
+  <div data-state="loading" class="p-4 rounded-4xl shadow-lg w-full max-w-xl bg-gray-200 motion-safe:animate-pulse">
+    <div class="flex items-center gap-4">
+      <div class="w-16 h-16 sm:w-24 sm:h-24 bg-gray-300 rounded-md shadow-lg"></div>
+      <div class="flex-1 min-w-0">
+        <div class="h-4 bg-gray-300 rounded mb-2 w-1/2"></div>
+        <div class="h-6 bg-gray-300 rounded mb-2 w-3/4"></div>
+        <div class="h-4 bg-gray-300 rounded mb-2 w-2/3"></div>
+      </div>
+    </div>
+  </div>
+
+  <div data-state="idle" hidden class="p-4 rounded-4xl flex items-center gap-4 shadow-lg w-full max-w-xl bg-black">
+    <img src={SpotifyLogo.src} alt="Spotify Logo" class="w-16 h-16 sm:w-24 sm:h-24 rounded-md shadow-lg" />
+    <div class="flex-1 min-w-0 text-white">
+      <p class="text-lg font-bold truncate">Not Playing</p>
+      <p class="text-sm font-semibold truncate">No music currently playing</p>
+    </div>
+  </div>
+
+  <div data-state="playing" hidden class="p-4 rounded-4xl flex items-center gap-4 shadow-lg w-full max-w-xl">
+    <img data-field="cover" alt="" class="w-16 h-16 sm:w-24 sm:h-24 rounded-md shadow-lg" />
+    <div data-field="text" class="flex-1 min-w-0">
+      <p class="text-sm">Currently listening to:</p>
+      <p data-field="title" class="text-lg font-bold truncate max-w-[16rem]"></p>
+      <p data-field="artist" class="text-sm font-semibold truncate max-w-[16rem]"></p>
+      <a
+        data-field="link"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex float-right items-center gap-1 mt-1 text-sm hover:opacity-80 transition-opacity"
+      >
+        Listen on Spotify
+        <FiExternalLink size={16} aria-hidden="true" />
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  import { getCurrentlyPlaying } from "../../services/spotifyService";
+  import { getImageAverageColor } from "../../services/colorService";
+
+  const POLL_INTERVAL_MS = 10_000;
+
+  const root = document.querySelector<HTMLElement>("[data-now-playing]")!;
+  const states = [...root.querySelectorAll<HTMLElement>("[data-state]")];
+  const field = <T extends HTMLElement>(name: string) => root.querySelector<T>(`[data-field="${name}"]`)!;
+
+  const playing = root.querySelector<HTMLElement>('[data-state="playing"]')!;
+  const cover = field<HTMLImageElement>("cover");
+  const text = field<HTMLElement>("text");
+  const title = field<HTMLElement>("title");
+  const artist = field<HTMLElement>("artist");
+  const link = field<HTMLAnchorElement>("link");
+
+  const show = (state: "idle" | "playing") => {
+    for (const element of states) element.hidden = element.dataset.state !== state;
+  };
+
+  async function update() {
+    try {
+      const track = await getCurrentlyPlaying();
+      if (!track?.title) {
+        show("idle");
+        return;
+      }
+
+      const color = await getImageAverageColor(track.albumImageUrl);
+      playing.style.backgroundColor = color.hex;
+      text.style.color = color.isDark ? "#ffffff" : "#000000";
+      cover.src = track.albumImageUrl;
+      title.textContent = track.title;
+      artist.textContent = track.artist;
+      link.href = track.songUrl;
+      show("playing");
+    } catch (error) {
+      console.error("Error fetching now playing:", error);
+      show("idle");
+    }
+  }
+
+  update();
+  setInterval(update, POLL_INTERVAL_MS);
+</script>

@@ -7,7 +7,7 @@ import Ruben from "../../assets/images/Ruben.png";
 
 import Underline from "./Svg/Underline.astro";
 import RubenText from "./Svg/RubenText.astro";
-import NowPlaying from "../NowPlaying/NowPlaying";
+import NowPlaying from "../NowPlaying/NowPlaying.astro";
 
 const words = [
   "Developer",
@@ -159,7 +159,7 @@ const rollerCss = `
         </div>
         {/* Now Playing Component */}
         <div class="mt-auto">
-          <NowPlaying client:load />
+          <NowPlaying />
         </div>
       </div>
     </div>

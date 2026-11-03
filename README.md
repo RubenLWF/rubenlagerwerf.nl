@@ -4,7 +4,7 @@ My personal website built using Astro, you can visit it on [https://rubenlagerwe
 
 ## 🛠️ Tech Stack
 
-- **Framework**: Astro (static output) with a React 19 island, TypeScript
+- **Framework**: Astro (static output), TypeScript. React only renders `react-icons` at build time; no React is shipped to the browser.
 - **Styling**: Tailwind CSS
 - **Build Tool**: Astro (Vite)
 - **Deployment**: GitHub Pages
@@ -23,7 +23,7 @@ Static Astro component (no client-side JavaScript) featuring:
 - Spotify now playing widget
 
 ### NowPlaying
-React island (`client:load`), the only part of the page that ships JavaScript, that:
+Astro component with a small client-side script, the only JavaScript on the page, that:
 - Fetches current track information
 - Displays album artwork with dynamic background colors
 - Shows track title, artist, and play status
