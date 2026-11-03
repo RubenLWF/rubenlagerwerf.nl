@@ -23,6 +23,9 @@ const words = [
 // The first word is repeated at the end so the loop restarts without a visible jump.
 const rollerWords = [...words, words[0]];
 
+// Screen readers get one sentence instead of the animated list, which is hidden from them.
+const wordsSentence = `I am a ${new Intl.ListFormat("en", { type: "conjunction" }).format(words)}.`;
+
 const HOLD_MS = 1300;
 const SLIDE_MS = 500;
 const WORD_HEIGHT_REM = 3; // h-12
@@ -82,13 +85,14 @@ const rollerCss = `
         <div class="justify-between flex flex-col gap-4 flex-1 py-4 lg:px-4">
           {/* Scrolling text */}
           <div class="flex items-center">
-            <span class="text-xl sm:text-3xl mr-2 whitespace-nowrap">I am a</span>
-            <div class="overflow-hidden h-12 relative">
+            <span class="sr-only">{wordsSentence}</span>
+            <span class="text-xl sm:text-3xl mr-2 whitespace-nowrap" aria-hidden="true">I am a</span>
+            <div class="overflow-hidden h-12 relative" aria-hidden="true">
               <div class="word-roller">
                 {rollerWords.map((word) => (
-                  <h2 class="text-xl sm:text-3xl font-bold h-12 flex items-center text-secondary whitespace-nowrap">
+                  <span class="text-xl sm:text-3xl font-bold h-12 flex items-center text-secondary whitespace-nowrap">
                     {word}
-                  </h2>
+                  </span>
                 ))}
               </div>
             </div>
