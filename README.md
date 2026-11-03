@@ -7,7 +7,7 @@ My personal website built using Astro, you can visit it on [https://rubenlagerwe
 - **Framework**: Astro (static output), TypeScript
 - **Styling**: Tailwind CSS
 - **Build Tool**: Astro (Vite)
-- **Deployment**: GitHub Pages
+- **Deployment**: GitHub Pages, via GitHub Actions on every push to `main` (`.github/workflows/deploy.yml`)
 - **API Proxy**: Vercel Serverless Functions
 
 ## 🎵 Spotify Integration
