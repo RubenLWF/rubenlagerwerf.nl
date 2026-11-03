@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@astrojs/react": "^7.1.2",
+    "@astrojs/sitemap": "^3.7.4",
     "@tailwindcss/vite": "^4.3.4",
     "astro": "^7.4.5",
     "fast-average-color": "^9.5.0",
