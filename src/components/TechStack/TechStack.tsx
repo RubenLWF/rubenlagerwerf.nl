@@ -91,7 +91,7 @@ export default function TechStack() {
                   <div className="flip-card-inner">
                     {/* Front Side */}
                     <div className="flip-card-front bg-primary flex flex-col items-center justify-center rounded-2xl shadow-lg transform rotate-45">
-                      <span className="block transform -rotate-45 select-none flex flex-col items-center justify-center color-secondary">
+                      <span className="block transform -rotate-45 select-none flex flex-col items-center justify-center">
                         {Icon}
                       </span>
                     </div>

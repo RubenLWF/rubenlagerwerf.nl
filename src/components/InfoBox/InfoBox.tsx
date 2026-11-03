@@ -46,7 +46,7 @@ export default function InfoBox() {
   }, [index, words.length]);
 
   return (
-    <div className="info-box bg-primary bg-opacity-25 shadow-lg rounded-4xl max-w-220 w-2/3 h-128">
+    <div className="info-box bg-primary shadow-lg rounded-4xl max-w-220 w-2/3 h-128">
       <div className="w-full h-full flex flex-col text-white rounded-lg p-4">
         {/* Title */}
         <h1 className="text-5xl align-middle text-center">
