@@ -3,6 +3,14 @@ import { getImage } from "astro:assets";
 import background from "../assets/images/background.jpg";
 import "../styles/global.css";
 
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
 // Shown at its native 3000px size and darkened by a multiply blend, so heavy compression is not visible.
 const optimizedBackground = await getImage({ src: background, format: "webp", quality: 50 });
 ---
@@ -13,7 +21,9 @@ const optimizedBackground = await getImage({ src: background, format: "webp", qu
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ruben Lagerwerf</title>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
   </head>
   <body>
     <slot />
