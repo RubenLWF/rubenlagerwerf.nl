@@ -45,7 +45,7 @@ export default function NowPlaying() {
         >
             <img
                 src={nowPlaying.albumImageUrl}
-                alt={nowPlaying.title}
+                alt=""
                 className="w-16 h-16 sm:w-24 sm:h-24 rounded-md shadow-lg"
             />
             <div className="flex-1 min-w-0" style={{ color: nowPlaying.isDark ? '#ffffff' : '#000000' }}>
@@ -54,7 +54,7 @@ export default function NowPlaying() {
                 <p className="text-sm font-semibold truncate max-w-[16rem]">{nowPlaying.artist}</p>
                 <a href={nowPlaying.songUrl} target="_blank" rel="noopener noreferrer" className="flex float-right items-center gap-1 mt-1 text-sm hover:opacity-80 transition-opacity">
                     Listen on Spotify
-                    <FiExternalLink size={16} />
+                    <FiExternalLink size={16} aria-hidden="true" />
                 </a>
             </div>
         </div>
