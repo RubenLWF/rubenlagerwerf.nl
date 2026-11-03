@@ -4,7 +4,8 @@
   --font-sans: ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --color-primary: #13341E;
-  --color-secondary: #4E7145;
+  /* 4.95:1 on --color-primary: passes WCAG AA for normal text. */
+  --color-secondary: #7BA770;
   --color-accent: #EB9C35;
 }
 
