@@ -26,7 +26,7 @@ export default function NowPlaying() {
                 className="p-4 rounded-4xl flex items-center gap-4 shadow-lg w-full max-w-xl bg-black"
             >
                 <img
-                    src={SpotifyLogo}
+                    src={SpotifyLogo.src}
                     alt="Spotify Logo"
                     className="w-24 h-24 rounded-md shadow-lg"
                 />

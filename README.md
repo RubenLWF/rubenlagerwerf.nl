@@ -1,29 +1,29 @@
 # Ruben LWF - Portfolio Website
 
-My personal website built using React, you can visit it on [https://rubenlagerwerf.nl](https://rubenlagerwerf.nl).
+My personal website built using Astro, you can visit it on [https://rubenlagerwerf.nl](https://rubenlagerwerf.nl).
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19, TypeScript
+- **Framework**: Astro (static output) with a React 19 island, TypeScript
 - **Styling**: Tailwind CSS
-- **Build Tool**: Vite
+- **Build Tool**: Astro (Vite)
 - **Deployment**: GitHub Pages
 - **API Proxy**: Vercel Serverless Functions
 
 ## 🎵 Spotify Integration
 
-The website features real-time Spotify integration that displays your currently playing track. A Vercel serverless function calls the Spotify API on the server and returns the track details.
+The website features real-time Spotify integration that displays your currently playing track. A Vercel serverless function calls the Spotify API on the server and returns the track details. Set the proxy URL as `PUBLIC_VERCEL_API_BASE` in `.env` (see `.env.example`).
 
 ## 🎨 Components
 
 ### InfoBox
-The main component featuring:
+Static Astro component (no client-side JavaScript) featuring:
 - Animated profile section
 - Social media links
 - Spotify now playing widget
 
 ### NowPlaying
-Spotify integration component that:
+React island (`client:load`), the only part of the page that ships JavaScript, that:
 - Fetches current track information
 - Displays album artwork with dynamic background colors
 - Shows track title, artist, and play status

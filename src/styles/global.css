@@ -11,7 +11,8 @@
 html,
 body {
   font-family: var(--font-sans);
-  background: url('./assets/images/background.jpg') rgba(26, 63, 34, 0.75);
+  /* --background-image is set in Layout.astro so Astro can optimise the image. */
+  background: var(--background-image) rgba(26, 63, 34, 0.75);
   background-blend-mode: multiply;
 
   @media (prefers-color-scheme: dark) {

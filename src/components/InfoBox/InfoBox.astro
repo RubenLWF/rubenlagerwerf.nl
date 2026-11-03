@@ -1,0 +1,161 @@
+---
+import { Picture } from "astro:assets";
+import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+
+import Ruben from "../../assets/images/Ruben.png";
+
+import Underline from "./Svg/Underline.astro";
+import RubenText from "./Svg/RubenText.astro";
+import NowPlaying from "../NowPlaying/NowPlaying";
+
+const words = [
+  "Developer",
+  "Student",
+  "Tech Enthusiast",
+  "Critical Thinker",
+  "Software Engineer",
+  "Tinkerer",
+  "Perfectionist",
+  "Problem Solver",
+];
+
+// The first word is repeated at the end so the loop restarts without a visible jump.
+const rollerWords = [...words, words[0]];
+
+const HOLD_MS = 1300;
+const SLIDE_MS = 500;
+const WORD_HEIGHT_REM = 3; // h-12
+const stepMs = HOLD_MS + SLIDE_MS;
+const cycleMs = stepMs * words.length;
+const percent = (ms: number) => `${((ms / cycleMs) * 100).toFixed(3)}%`;
+const rollerKeyframes = words
+  .map(
+    (_, i) =>
+      `${percent(i * stepMs + HOLD_MS)} { transform: translateY(-${i * WORD_HEIGHT_REM}rem); }` +
+      `${percent((i + 1) * stepMs)} { transform: translateY(-${(i + 1) * WORD_HEIGHT_REM}rem); }`,
+  )
+  .join("\n");
+const rollerCss = `
+@keyframes word-roller {
+  0% { transform: translateY(0); }
+  ${rollerKeyframes}
+}
+.word-roller {
+  animation: word-roller ${cycleMs}ms cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}`;
+---
+
+<Fragment set:html={`<style>${rollerCss}</style>`} />
+
+<div class="info-box bg-primary shadow-lg rounded-4xl max-w-220 w-2/3 h-128">
+  <div class="w-full h-full flex flex-col text-white rounded-lg p-4">
+    {/* Title */}
+    <h1 class="text-5xl align-middle text-center">
+      Hi, I am{" "}
+      <span class="relative inline-block font-bold">
+        Ruben Lagerwerf
+        <Underline />
+      </span>
+    </h1>
+    <div class="flex flex-row items-end justify-center flex-1 w-full mt-2">
+      {/* Image and SVG text */}
+      <div class="w-1/2 flex flex-col m-2 justify-center h-full">
+        <div class="relative w-full flex justify-center items-center">
+          <Picture
+            src={Ruben}
+            alt="Profile image"
+            formats={["avif"]}
+            fallbackFormat="webp"
+            widths={[420, 840]}
+            sizes="(min-width: 1320px) 420px, 33vw"
+            priority
+            class="block w-full object-scale-down rounded-4xl"
+          />
+          <div class="absolute left-3 -bottom-3 w-2/3 flex justify-center pointer-events-none">
+            <RubenText />
+          </div>
+        </div>
+      </div>
+      {/* Text */}
+      <div class="w-1/2 text-white flex flex-col h-full m-2">
+        <div class="justify-between flex flex-col h-full p-4">
+          {/* Scrolling text */}
+          <div class="flex items-center">
+            <span class="text-3xl mr-2 whitespace-nowrap">I am a</span>
+            <div class="overflow-hidden h-12 relative">
+              <div class="word-roller">
+                {rollerWords.map((word) => (
+                  <h2 class="text-3xl font-bold h-12 flex items-center text-secondary whitespace-nowrap">
+                    {word}
+                  </h2>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/* Description */}
+          <p>
+            Currently pursuing a Master's in Cybersecurity at{" "}
+            <a
+              class="text-secondary hover:text-accent transition-colors"
+              href="https://educationguide.tue.nl/programs/graduate-school/special-masters-tracks/special-masters-track-cybersecurity"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Eindhoven University of Technology
+            </a>
+            {" "}and working as a developer at{" "}
+            <a
+              class="text-secondary hover:text-accent transition-colors"
+              href="https://drieam.com/en/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Drieam
+            </a>.
+          </p>
+          {/* Location */}
+          <div class="flex items-center justify-center w-full">
+            <FaLocationDot className="text-accent w-6 h-6 mr-2" />
+            <h2 class="text-lg">Based in Eindhoven</h2>
+          </div>
+          {/* Links */}
+          <div class="items-center w-full">
+            <div class="w-2/3 mx-auto flex justify-between">
+              <a
+                href="https://www.linkedin.com/in/ruben-lagerwerf/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                class="flex-1 flex justify-center"
+              >
+                <FaLinkedin className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+              </a>
+              <a
+                href="https://github.com/RubenLWF"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                class="flex-1 flex justify-center"
+              >
+                <FaGithub className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+              </a>
+              <a
+                href="mailto:contact@rubenlagerwerf.nl"
+                target="_blank"
+                aria-label="Email"
+                class="flex-1 flex justify-center"
+              >
+                <FaEnvelope className="w-7 h-7 text-secondary hover:text-accent transition-colors" />
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* Now Playing Component */}
+        <div class="mt-auto">
+          <NowPlaying client:load />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
