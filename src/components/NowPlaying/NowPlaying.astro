@@ -1,6 +1,6 @@
 ---
 import { FiExternalLink } from "react-icons/fi";
-import SpotifyLogo from "../../assets/images/Spotify_Logo.png";
+import { SiSpotify } from "react-icons/si";
 ---
 
 <div data-now-playing>
@@ -16,7 +16,7 @@ import SpotifyLogo from "../../assets/images/Spotify_Logo.png";
   </div>
 
   <div data-state="idle" hidden class="p-4 rounded-4xl flex items-center gap-4 shadow-lg w-full max-w-xl bg-black">
-    <img src={SpotifyLogo.src} alt="Spotify Logo" class="w-16 h-16 sm:w-24 sm:h-24 rounded-md shadow-lg" />
+    <SiSpotify className="w-16 h-16 sm:w-24 sm:h-24 shrink-0 text-[#1ED760]" role="img" aria-label="Spotify" />
     <div class="flex-1 min-w-0 text-white">
       <p class="text-lg font-bold truncate">Not Playing</p>
       <p class="text-sm font-semibold truncate">No music currently playing</p>
