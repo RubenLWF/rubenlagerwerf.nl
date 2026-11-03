@@ -48,19 +48,19 @@ const rollerCss = `
 
 <Fragment set:html={`<style>${rollerCss}</style>`} />
 
-<div class="info-box bg-primary shadow-lg rounded-4xl max-w-220 w-2/3 h-128">
+<div class="info-box bg-primary shadow-lg rounded-4xl w-full max-w-lg lg:max-w-220 lg:h-128">
   <div class="w-full h-full flex flex-col text-white rounded-lg p-4">
     {/* Title */}
-    <h1 class="text-5xl align-middle text-center">
+    <h1 class="text-3xl sm:text-4xl lg:text-5xl align-middle text-center">
       Hi, I am{" "}
       <span class="relative inline-block font-bold">
         Ruben Lagerwerf
         <Underline />
       </span>
     </h1>
-    <div class="flex flex-row items-end justify-center flex-1 w-full mt-2">
+    <div class="flex flex-col lg:flex-row lg:items-end justify-center flex-1 w-full mt-2">
       {/* Image and SVG text */}
-      <div class="w-1/2 flex flex-col m-2 justify-center h-full">
+      <div class="lg:w-1/2 flex flex-col m-2 justify-center lg:h-full">
         <div class="relative w-full flex justify-center items-center">
           <Picture
             src={Ruben}
@@ -68,7 +68,7 @@ const rollerCss = `
             formats={["avif"]}
             fallbackFormat="webp"
             widths={[420, 840]}
-            sizes="(min-width: 1320px) 420px, 33vw"
+            sizes="(min-width: 1024px) 410px, (min-width: 544px) 464px, calc(100vw - 80px)"
             priority
             class="block w-full object-scale-down rounded-4xl"
           />
@@ -78,15 +78,15 @@ const rollerCss = `
         </div>
       </div>
       {/* Text */}
-      <div class="w-1/2 text-white flex flex-col h-full m-2">
-        <div class="justify-between flex flex-col h-full p-4">
+      <div class="lg:w-1/2 text-white flex flex-col lg:h-full m-2">
+        <div class="justify-between flex flex-col gap-4 lg:h-full py-4 lg:px-4">
           {/* Scrolling text */}
           <div class="flex items-center">
-            <span class="text-3xl mr-2 whitespace-nowrap">I am a</span>
+            <span class="text-xl sm:text-3xl mr-2 whitespace-nowrap">I am a</span>
             <div class="overflow-hidden h-12 relative">
               <div class="word-roller">
                 {rollerWords.map((word) => (
-                  <h2 class="text-3xl font-bold h-12 flex items-center text-secondary whitespace-nowrap">
+                  <h2 class="text-xl sm:text-3xl font-bold h-12 flex items-center text-secondary whitespace-nowrap">
                     {word}
                   </h2>
                 ))}
